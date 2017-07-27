@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/notification_bar"
+        android:checkable="false"
+        android:checked="false"
+        android:icon="@drawable/notifications_button"
+        android:orderInCategory="1"
+        android:title="Notification"
+        android:visible="true"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/search_bar"
+        android:orderInCategory="2"
+        android:title="Search"
+        android:icon="@drawable/searching_button"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/addnew_bar"
+        android:orderInCategory="4"
+        android:title="Add new"
+        app:showAsAction="always"
+        android:icon="@drawable/add_plus_button"/>
+    <item
+        android:id="@+id/settings_bar"
+        android:orderInCategory="3"
+        android:title="Settings" />
+
+</menu>

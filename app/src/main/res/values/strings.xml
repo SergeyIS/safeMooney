@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SafeMooney</string>
+    <string name="signin_btn">Sign In</string>
+    <string name="enter_login">Your login</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_delete">delete</string>
 </resources>
