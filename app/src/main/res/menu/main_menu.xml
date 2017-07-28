@@ -14,16 +14,16 @@
 
     <item
         android:id="@+id/search_bar"
+        android:icon="@drawable/searching_button"
         android:orderInCategory="2"
         android:title="Search"
-        android:icon="@drawable/searching_button"
         app:showAsAction="always" />
     <item
         android:id="@+id/addnew_bar"
+        android:icon="@drawable/add_plus_button"
         android:orderInCategory="4"
         android:title="Add new"
-        app:showAsAction="always"
-        android:icon="@drawable/add_plus_button"/>
+        app:showAsAction="always" />
     <item
         android:id="@+id/settings_bar"
         android:orderInCategory="3"
