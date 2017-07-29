@@ -14,12 +14,12 @@
     <ListView
         android:id="@+id/transactions_view"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:layout_weight="0.18">
+        android:layout_weight="1">
     </ListView>
 
 
@@ -27,8 +27,10 @@
         android:id="@+id/add_transaction_btn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginTop="30dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
         app:backgroundTint="@color/colorOrange"
         app:elevation="8dp"
         app:fabSize="normal"

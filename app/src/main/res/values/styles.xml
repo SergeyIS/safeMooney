@@ -18,5 +18,4 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Theme.WithActionBar.AppTheme" parent="android:Theme.WithActionBar" />
-
 </resources>

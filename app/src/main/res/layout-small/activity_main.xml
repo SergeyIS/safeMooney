@@ -10,28 +10,25 @@
     android:background="@color/colorWhite">
 
 
-
     <ListView
         android:id="@+id/transactions_view"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_weight="0.18">
-    </ListView>
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"></ListView>
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_transaction_btn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_gravity="bottom|center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:backgroundTint="@color/colorOrange"
-        app:elevation="8dp"
-        app:fabSize="normal"
         app:srcCompat="@drawable/add_plus_button" />
 
 </LinearLayout>
