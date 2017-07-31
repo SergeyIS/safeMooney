@@ -3,24 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="/files/dev/safeMooney/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="3756709dd2fe0e584663647d81bf2b442f3fbe21">
-        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_aac9a83475f49f355f7276d382a99302f3edb901/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/8ce1752301c0a960bfcdd30ab4d4ecc5cd1383df/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
-        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e9bc54587aee80c171b254b101372da18e5bef1c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/files/dev/safeMooney/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -30,21 +12,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/root/.android/build-cache/f11c96dc2741cbc81d434d53c231198fcf3719e7/output/jars/classes.jar"
+        jar="/files/dev/safeMooney/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
-        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e247f4e21b5c487e61d62ea8c36c21b91862f8e1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/root/.android/build-cache/db3c22b8efa526ad43392265411a4c12c58acad2/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.0"
-        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
-        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_02cc394abc4c6b17a00ddb183a8a513af20083be/classes.dex" />
+        sha1="c35624cbf8cb8576b6a51d68da18c170d83ffffd">
+        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_aac9a83475f49f355f7276d382a99302f3edb901/classes.dex" />
     </item>
 
 </items>
