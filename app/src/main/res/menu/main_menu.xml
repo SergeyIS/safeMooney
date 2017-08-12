@@ -29,4 +29,9 @@
         android:orderInCategory="3"
         android:title="Settings" />
 
+    <item
+        android:id="@+id/logout_bar"
+        android:orderInCategory="5"
+        android:title="LogOut" />
+
 </menu>

@@ -16,8 +16,17 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="c35624cbf8cb8576b6a51d68da18c170d83ffffd">
+        sha1="69fd3c5062fd8a18559476bdd076c10825a3ae4b">
         <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_aac9a83475f49f355f7276d382a99302f3edb901/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/files/dev/safeMooney/app/libs/gson-2.8.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="02a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0">
+        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/2/gson-2.8.1_cc4653a51eae949bc965859b757c39a40a885322/classes.dex" />
     </item>
 
 </items>
