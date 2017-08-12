@@ -231,7 +231,7 @@ public class TransactionClient
         }
     }
 
-    public List<Transaction> fetchTransactions() throws MalformedURLException, IOException
+    public List<Transaction> fetchTransactions()
     {
         try
         {
@@ -248,12 +248,9 @@ public class TransactionClient
             if(urlConnection.getResponseCode() != urlConnection.HTTP_OK)
                 return null;
 
-            BufferedInputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-            byte[] bytes = new byte[inputStream.available()];
-            inputStream.read(bytes);
-            inputStream.close();
-            String json = new String(bytes, charsetName);
-            bytes = null;
+            InputStream response = urlConnection.getInputStream();
+            Scanner s = new Scanner(response);
+            String json = s.hasNext() ? s.next() : "";
 
             List<LinkedTreeMap> transactionList = serializer.fromJson(json, List.class);
 
@@ -264,12 +261,12 @@ public class TransactionClient
             for(LinkedTreeMap m : transactionList)
             {
                 Transaction tr = new Transaction();
-                tr.setId(Integer.valueOf((String)m.get("Id")));
-                tr.setUser1Id(Integer.valueOf((String)m.get("User1Id")));
-                tr.setUser2Id(Integer.valueOf((String)m.get("User2Id")));
+                tr.setId((int)((double)m.get("Id")));
+                tr.setUser1Id((int)((double)m.get("User1Id")));
+                tr.setUser2Id((int)((double)m.get("User2Id")));
                 tr.setCount((String)m.get("Count"));
                 tr.setDate(df.parse((String) m.get("Date")));
-                tr.setPeriod(Integer.valueOf((String)m.get("Period")));
+                tr.setPeriod((int)((double)m.get("Period")));
                 tr.setClosed((Boolean) m.get("IsClosed"));
                 tr.setPermited((Boolean)m.get("IsPermited"));
 

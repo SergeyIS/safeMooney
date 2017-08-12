@@ -2,24 +2,32 @@ package com.safemooney.app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.safemooney.R;
 import com.safemooney.http.AccountClient;
-
+import com.safemooney.http.TransactionClient;
+import com.safemooney.http.models.User;
+import com.safemooney.http.models.Transaction;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
 {
 
-    ArrayList<Transaction> transactionList;
+
+    private final static List<Transaction> TRANSACTION_LIST = new ArrayList<>();
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,16 +35,84 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        InitializeTransactionList();
-
-        TransactionAdapter transactionAdapter = new TransactionAdapter(this, R.layout.transaction_item, transactionList);
+        //InitializeTransactionList();
 
         ListView transactionsView = (ListView) findViewById(R.id.transactions_view);
+        TransactionAdapter adapter = new TransactionAdapter(this, R.layout.transaction_item, TRANSACTION_LIST);
+        transactionsView.setAdapter(adapter);
 
-        transactionsView.setAdapter(transactionAdapter);
+
+        //getting currentUser
+        SharedPreferences preferences = getSharedPreferences("userdata", MODE_PRIVATE);
+        int userId = preferences.getInt("userId", -1);
+        String username = preferences.getString("username", null);
+        String firstname = preferences.getString("firstname", null);
+        String lastname = preferences.getString("lastname", null);
+        String tokenkey = preferences.getString("tokenkey", null);
+
+        if(userId < 0 || username == null || firstname == null || lastname == null || tokenkey == null)
+        {
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            startActivity(loginIntent);
+            finish();
+        }
+        else
+        {
+            currentUser = new User();
+            currentUser.setId(userId);
+            currentUser.setUsername(username);
+            currentUser.setFirstname(firstname);
+            currentUser.setLastname(lastname);
+            currentUser.setTokenkey(tokenkey);
+        }
+        //
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        AsyncTask<Void, Integer, Void> asyncTask = new AsyncTask<Void, Integer, Void>() {
+
+            List<Transaction> transactionList;
+            @Override
+            protected Void doInBackground(Void... unused)
+            {
+                try
+                {
+                    TransactionClient transactionClient = new TransactionClient(currentUser.getId(), currentUser.getTokenkey());
+                    transactionList = transactionClient.fetchTransactions();
+                    if(transactionList == null)
+                    {
+
+                    }
+                }
+                catch(Exception e)
+                {
+                    Log.d("mytag", e.toString());
+                }
+
+                return(null);
+            }
+
+            @Override
+            protected void onPostExecute(Void unused)
+            {
+                if(transactionList == null)
+                    return;
+
+                ListView transactionsView = (ListView) findViewById(R.id.transactions_view);
+                ArrayAdapter<Transaction> adapter = (ArrayAdapter<Transaction>) transactionsView.getAdapter();
+                adapter.clear();
+                adapter.addAll(transactionList);
+            }
+            @Override
+            protected void onProgressUpdate(Integer... items) {}
+        };
+
+        asyncTask.execute();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -61,6 +137,13 @@ public class MainActivity extends AppCompatActivity
         }
         return true;
     }
+
+
+
+
+
+
+
 
     private void addNewTransaction()
     {
@@ -113,12 +196,11 @@ public class MainActivity extends AppCompatActivity
     }
     private void InitializeTransactionList()
     {
-
-        transactionList = new ArrayList<Transaction>();
-        for(int i = 0; i < 10 ; i++)
-            transactionList.add(new Transaction("Sergey Ivanovich" + i, "123.45", new byte[1], true));
-
+//        for(int i = 0; i < 10 ; i++)
+//            TRANSACTION_LIST.add(new Transaction("Sergey Ivanovich" + i, "123.45", new byte[1], true));
 
     }
+
+
 
 }

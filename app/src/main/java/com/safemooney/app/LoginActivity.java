@@ -21,12 +21,12 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class LoginActivity extends AppCompatActivity
 {
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
