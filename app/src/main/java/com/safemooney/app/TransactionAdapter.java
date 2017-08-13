@@ -39,7 +39,7 @@ public class TransactionAdapter extends ArrayAdapter<Transaction>
         Transaction trans = transactions.get(position);
 
         imageView.setImageResource(R.color.colorOrange);
-        nameView.setText(Integer.toString(trans.getUser2Id()));
+        nameView.setText("user with id: " + Integer.toString(trans.getUser2Id()));
         countView.setText(trans.getCount());
 
         return view;

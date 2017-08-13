@@ -44,7 +44,7 @@ public class TransactionClient
             URL getUserListUrl = new URL(getUserListPath);
             HttpURLConnection urlConnection = (HttpURLConnection)getUserListUrl.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.addRequestProperty("Accept-Charset", "utf-8");
+            urlConnection.addRequestProperty("Accept-Charset", charsetName);
             urlConnection.addRequestProperty("Content-Type", "application/json");
             urlConnection.addRequestProperty("Authorization", "Basic " + tokenKey);
             urlConnection.setDoInput(true);

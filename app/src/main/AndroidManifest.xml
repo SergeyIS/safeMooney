@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.safemooney">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_ico"
@@ -9,7 +11,6 @@
         android:roundIcon="@drawable/logo_ico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".app.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,17 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".app.MainActivity">
-
-        </activity>
-
-        <activity android:name=".app.AddTransactionActivity">
-            
-        </activity>
-
+        <activity android:name=".app.MainActivity"></activity>
+        <activity android:name=".app.AddTransactionActivity"></activity>
+        <activity android:name=".app.FindUserActivity"></activity>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

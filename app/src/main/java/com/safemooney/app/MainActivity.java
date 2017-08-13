@@ -97,9 +97,8 @@ public class MainActivity extends AppCompatActivity
             }
 
             @Override
-            protected void onPostExecute(Void unused)
-            {
-                if(transactionList == null)
+            protected void onPostExecute(Void unused) {
+                if (transactionList == null)
                     return;
 
                 ListView transactionsView = (ListView) findViewById(R.id.transactions_view);
@@ -107,8 +106,6 @@ public class MainActivity extends AppCompatActivity
                 adapter.clear();
                 adapter.addAll(transactionList);
             }
-            @Override
-            protected void onProgressUpdate(Integer... items) {}
         };
 
         asyncTask.execute();
@@ -128,9 +125,13 @@ public class MainActivity extends AppCompatActivity
 
         switch (item.getItemId()){
 
-            case (R.id.addnew_bar):
-                addNewTransaction();
+            case (R.id.addnew_bar):{
+
+                Intent findUserIntent = new Intent();
+                findUserIntent.setClass(this, FindUserActivity.class);
+                startActivity(findUserIntent);
                 break;
+            }
             case (R.id.logout_bar):
                 logOut();
                 break;

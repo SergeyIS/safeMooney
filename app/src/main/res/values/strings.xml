@@ -4,8 +4,10 @@
     <string name="enter_login">Your login</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_delete">delete</string>
-    
-    <string-array id = "currency" name="currency">
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+
+    <string-array name="currency" id="currency">
         <item>р.</item>
         <item>$</item>
         <item>£</item>
