@@ -12,6 +12,8 @@ import java.util.*;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.safemooney.http.models.Transaction;
+import com.safemooney.http.models.TransactionPreview;
+import com.safemooney.http.models.User;
 import com.safemooney.http.models.UserPreview;
 
 public class TransactionClient
@@ -121,7 +123,7 @@ public class TransactionClient
         }
     }
 
-    public List<Transaction> checkQueue()
+    public List<TransactionPreview> checkQueue()
     {
         try
         {
@@ -138,31 +140,41 @@ public class TransactionClient
             if(urlConnection.getResponseCode() != urlConnection.HTTP_OK)
                 return null;
 
-            BufferedInputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-            byte[] bytes = new byte[inputStream.available()];
-            inputStream.read(bytes);
-            inputStream.close();
+            InputStream response = urlConnection.getInputStream();
+            Scanner s = new Scanner(response);
+            String json = s.hasNext() ? s.next() : "";
 
-            String json = new String(bytes, charsetName);
             List<LinkedTreeMap> transactionList = serializer.fromJson(json, List.class);
 
-            List<Transaction> transactions = new ArrayList<Transaction>(transactionList.size());
+            List<TransactionPreview> transactions = new ArrayList<TransactionPreview>(transactionList.size());
 
             DateFormat df = new SimpleDateFormat(dateFormat);
 
             for(LinkedTreeMap m : transactionList)
             {
-                Transaction tr = new Transaction();
-                tr.setId(Integer.valueOf((String) m.get("Id")));
-                tr.setUser1Id(userId);
-                tr.setUser2Id(Integer.valueOf((String)m.get("User2Id")));
-                tr.setCount((String)m.get("Count"));
-                tr.setDate(df.parse((String) m.get("Date")));
-                tr.setPeriod(Integer.valueOf((String)m.get("Period")));
-                tr.setClosed(false);
-                tr.setPermited(false);
 
-                transactions.add(tr);
+                LinkedTreeMap userData = (LinkedTreeMap) m.get("userData");
+                LinkedTreeMap transactionData = (LinkedTreeMap) m.get("transactionData");
+
+                UserPreview user = new UserPreview();
+                Transaction trans = new Transaction();
+
+                user.setUserId((int)((double)userData.get("UserId")));
+                user.setUsername((String) userData.get("Username"));
+                user.setFirstName((String) userData.get("FirstName"));
+                user.setLastName((String) userData.get("LastName"));
+
+                trans.setId((int)((double)transactionData.get("Id")));
+                trans.setUser1Id((int)((double)transactionData.get("User1Id")));
+                trans.setUser2Id((int)((double)transactionData.get("User2Id")));
+                trans.setCount((String)transactionData.get("Count"));
+                trans.setDate(df.parse((String) transactionData.get("Date")));
+                trans.setPeriod((int)((double)transactionData.get("Period")));
+                trans.setPermited((boolean)transactionData.get("IsPermited"));
+                trans.setClosed((boolean)transactionData.get("IsClosed"));
+
+                transactions.add(new TransactionPreview(trans, user));
+
             }
 
             return transactions;
@@ -231,7 +243,7 @@ public class TransactionClient
         }
     }
 
-    public List<Transaction> fetchTransactions()
+    public List<TransactionPreview> fetchTransactions()
     {
         try
         {
@@ -254,23 +266,35 @@ public class TransactionClient
 
             List<LinkedTreeMap> transactionList = serializer.fromJson(json, List.class);
 
-            List<Transaction> transactions = new ArrayList<Transaction>(transactionList.size());
+            List<TransactionPreview> transactions = new ArrayList<TransactionPreview>(transactionList.size());
 
             DateFormat df = new SimpleDateFormat(dateFormat);
 
             for(LinkedTreeMap m : transactionList)
             {
-                Transaction tr = new Transaction();
-                tr.setId((int)((double)m.get("Id")));
-                tr.setUser1Id((int)((double)m.get("User1Id")));
-                tr.setUser2Id((int)((double)m.get("User2Id")));
-                tr.setCount((String)m.get("Count"));
-                tr.setDate(df.parse((String) m.get("Date")));
-                tr.setPeriod((int)((double)m.get("Period")));
-                tr.setClosed((Boolean) m.get("IsClosed"));
-                tr.setPermited((Boolean)m.get("IsPermited"));
 
-                transactions.add(tr);
+                LinkedTreeMap userData = (LinkedTreeMap) m.get("userData");
+                LinkedTreeMap transactionData = (LinkedTreeMap) m.get("transactionData");
+
+                UserPreview user = new UserPreview();
+                Transaction trans = new Transaction();
+
+                user.setUserId((int)((double)userData.get("UserId")));
+                user.setUsername((String) userData.get("Username"));
+                user.setFirstName((String) userData.get("FirstName"));
+                user.setLastName((String) userData.get("LastName"));
+
+                trans.setId((int)((double)transactionData.get("Id")));
+                trans.setUser1Id((int)((double)transactionData.get("User1Id")));
+                trans.setUser2Id((int)((double)transactionData.get("User2Id")));
+                trans.setCount((String)transactionData.get("Count"));
+                trans.setDate(df.parse((String) transactionData.get("Date")));
+                trans.setPeriod((int)((double)transactionData.get("Period")));
+                trans.setPermited((boolean)transactionData.get("IsPermited"));
+                trans.setClosed((boolean)transactionData.get("IsClosed"));
+
+                transactions.add(new TransactionPreview(trans, user));
+
             }
 
             return transactions;

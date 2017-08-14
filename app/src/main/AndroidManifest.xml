@@ -11,16 +11,16 @@
         android:roundIcon="@drawable/logo_ico"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".app.LoginActivity">
+        <activity android:name=".app.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.MainActivity"></activity>
-        <activity android:name=".app.AddTransactionActivity"></activity>
-        <activity android:name=".app.FindUserActivity"></activity>
+        <activity android:name=".app.activities.MainActivity"></activity>
+        <activity android:name=".app.activities.AddTransactionActivity"></activity>
+        <activity android:name=".app.activities.FindUserActivity"></activity>
     </application>
 
 </manifest>
