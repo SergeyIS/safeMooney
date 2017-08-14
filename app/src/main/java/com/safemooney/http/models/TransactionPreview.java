@@ -1,6 +1,8 @@
 package com.safemooney.http.models;
 
 
+import java.security.cert.Extension;
+
 public class TransactionPreview
 {
     private Transaction transactionData;
@@ -26,5 +28,25 @@ public class TransactionPreview
 
     public void setUserData(UserPreview userData) {
         this.userData = userData;
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == null)
+            return false;
+
+        try
+        {
+            TransactionPreview local = (TransactionPreview) obj;
+
+            return local.getTransactionData().getId() == this.transactionData.getId();
+
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 }

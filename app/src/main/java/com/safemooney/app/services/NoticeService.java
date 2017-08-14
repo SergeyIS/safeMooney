@@ -42,6 +42,11 @@ public class NoticeService
 
     public static Queue<TransactionPreview> getQueue()
     {
+        synchronized (transactionQueue)
+        {
+            if(transactionQueue != null)
+                return new ArrayDeque<>(transactionQueue);
+        }
         isActive[0] = false;
         try
         {
@@ -61,7 +66,7 @@ public class NoticeService
 
     private static class Runner implements Runnable
     {
-        private int sleepTime = 60000;
+        private int sleepTime = 600000;
         @Override
         public void run()
         {
@@ -75,7 +80,11 @@ public class NoticeService
                     if(queue == null)
                         continue;
 
-                    transactionQueue.addAll(queue);
+                    synchronized (transactionQueue)
+                    {
+                        transactionQueue.removeAll(queue);
+                        transactionQueue.addAll(queue);
+                    }
                 }
                 catch(Exception e)
                 {

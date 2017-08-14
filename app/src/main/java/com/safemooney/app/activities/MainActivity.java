@@ -134,6 +134,13 @@ public class MainActivity extends AppCompatActivity
             case (R.id.logout_bar):
                 logOut();
                 break;
+            case (R.id.notification_bar):
+            {
+                Intent noticeIntent = new Intent();
+                noticeIntent.setClass(this, NoticeActivity.class);
+                startActivity(noticeIntent);
+                break;
+            }
         }
         return true;
     }
@@ -145,22 +152,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void addNewTransaction()
-    {
 
-        Intent addTransIntent = new Intent();
-        addTransIntent.setClass(this, AddTransactionActivity.class);
-
-        try
-        {
-            startActivity(addTransIntent);
-        }
-        catch (Exception e)
-        {
-
-        }
-
-    }
     private void logOut()
     {
         SharedPreferences preferences = getSharedPreferences("userdata", MODE_PRIVATE);

@@ -18,9 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.activities.MainActivity"></activity>
-        <activity android:name=".app.activities.AddTransactionActivity"></activity>
-        <activity android:name=".app.activities.FindUserActivity"></activity>
+        <activity android:name=".app.activities.MainActivity" />
+        <activity android:name=".app.activities.AddTransactionActivity" />
+        <activity android:name=".app.activities.FindUserActivity" />
+        <activity android:name=".app.activities.NoticeActivity"></activity>
     </application>
 
 </manifest>
