@@ -66,7 +66,7 @@ public class NoticeService
 
     private static class Runner implements Runnable
     {
-        private int sleepTime = 600000;
+        private int sleepTime = 1000;
         @Override
         public void run()
         {

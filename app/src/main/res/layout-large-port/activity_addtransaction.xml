@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.safemooney.app.activities.AddTransactionActivity"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="@color/colorWhite"
+    android:paddingLeft="100dp"
+    android:paddingRight="100dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:scrollbars="none"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_weight="15"
+            android:background="@color/colorWhite">
+
+            <TextView
+                android:id="@+id/largename_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Username"
+                android:textColor="?attr/actionMenuTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/username_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="/@username" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/imgContainer"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/background_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@color/colorOrange"/>
+
+            <ImageView
+                android:id="@+id/mask_img"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/round" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/count_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="0.00"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/currency_spn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="6">
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/daysView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="10 Days"
+            android:textAlignment="center"
+            android:textColor="?android:attr/editTextColor"
+            android:textSize="24sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:min="0"
+            android:max="100"
+            android:progress="10"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp">
+
+        <Button
+            android:id="@+id/ok_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorOrange"
+            android:text="@string/ok"
+            android:textColor="@color/colorWhite"
+            android:layout_marginRight="15dp"/>
+
+        <Button
+            android:id="@+id/cncl_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorOrange"
+            android:text="@string/cancel"
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="15dp"/>
+    </LinearLayout>
+
+</LinearLayout>

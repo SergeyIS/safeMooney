@@ -35,14 +35,14 @@ public class UserAdapter extends ArrayAdapter<UserPreview>
 
         View view = inflater.inflate(this.layout, parent, false);
 
-        TextView usernameText = (TextView)  view.findViewById(R.id.username_text);
-        TextView cityText = (TextView) view.findViewById(R.id.city_text);
+        TextView largenameText = (TextView)  view.findViewById(R.id.largename_text);
+        TextView usernameText = (TextView) view.findViewById(R.id.username_text);
         ImageView backgroudImg = (ImageView) view.findViewById(R.id.background_img);
 
         UserPreview userPreview = users.get(position);
 
-        usernameText.setText(userPreview.getFirstName() + " " + userPreview.getLastName());
-        cityText.setText(userPreview.getUsername());
+        largenameText.setText(userPreview.getFirstName() + " " + userPreview.getLastName());
+        usernameText.setText(userPreview.getUsername());
         backgroudImg.setImageResource(R.color.colorOrange);
 
         return view;

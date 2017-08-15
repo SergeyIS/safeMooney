@@ -5,7 +5,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite">
+    android:background="@color/colorWhite"
+    android:paddingLeft="200dp"
+    android:paddingRight="200dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,8 +30,6 @@
         style="@android:style/Widget.Holo.AutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
         android:ems="10"
         android:hint="login"
         android:inputType="textPersonName"
@@ -45,8 +45,6 @@
         android:hint="password"
         android:inputType="textPassword"
         android:singleLine="true"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
         android:layout_marginTop="10dp"/>
 
     <Button
@@ -54,8 +52,6 @@
         style="@android:style/Widget.Material.Light.Button.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
         android:layout_marginTop="30dp"
         android:background="@color/colorOrange"
         android:text="@string/signin_btn"
