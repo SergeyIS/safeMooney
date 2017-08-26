@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity
                 ArrayAdapter<TransactionPreview> adapter = (ArrayAdapter<TransactionPreview>) transactionsView.getAdapter();
                 adapter.clear();
                 adapter.addAll(transactionList);
-                updateImages();
+
+                updateImages(currentUser.getId());
             }
         };
 
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void updateImages()
+    private void updateImages(final int userId)
     {
         ListView listView = (ListView) findViewById(R.id.transactions_view);
         int count = listView.getCount();
@@ -165,7 +166,7 @@ public class MainActivity extends AppCompatActivity
                     try
                     {
                         AccountClient accountClient = new AccountClient();
-                        Bitmap buf = accountClient.getImage(3, "0ee01fffc469ad5cc1ff2eb94970f8f7ebe6cef3adcab6ee2b4ece25ea43cb46f48d72f2ac5e0512c17de6259be9346edea95ae020cc92ec");
+                        Bitmap buf = accountClient.getImage(userId);
                         bitmaps[0] = buf;
                     }
                     catch (Exception e)

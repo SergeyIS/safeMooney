@@ -220,13 +220,10 @@ public class AccountClient
     }
 
 
-    public Bitmap getImage(int userId, String tokenkey)
+    public Bitmap getImage(int userId)
     {
         if(userId < 0)
             throw new IllegalArgumentException("userId can't be negative");
-
-        if(tokenkey == null)
-            throw new IllegalArgumentException("One of arguments has NULL value");
 
         try
         {
@@ -236,7 +233,6 @@ public class AccountClient
             urlConnection.setDoInput(true);
             urlConnection.setRequestMethod("GET");
             urlConnection.addRequestProperty("Accept-Charset", charsetName);
-            urlConnection.addRequestProperty("Authorization", "Basic " + tokenkey);
             urlConnection.addRequestProperty("Content-Type", "image/jpg");
             urlConnection.connect();
 

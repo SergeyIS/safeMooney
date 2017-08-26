@@ -205,6 +205,7 @@ public class TransactionClient
             urlConnection.addRequestProperty("Authorization", "Basic " + tokenKey);
 
             urlConnection.connect();
+            int code = urlConnection.getResponseCode();
 
             if(urlConnection.getResponseCode() == urlConnection.HTTP_OK)
                 return true;

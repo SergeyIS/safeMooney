@@ -49,7 +49,7 @@ public class TransactionAdapter extends ArrayAdapter<TransactionPreview>
         countView.setText(trans.getTransactionData().getCount());
 
         countView.setBackgroundResource(R.color.colorOrangeBright);
-        
+
         if(trans.getTransactionData().getId() == trans.getUserData().getUserId())
         {
             countView.setBackgroundResource(R.color.colorBrightgreen);
