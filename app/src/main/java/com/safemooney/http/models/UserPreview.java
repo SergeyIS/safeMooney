@@ -1,11 +1,14 @@
 package com.safemooney.http.models;
 
+import android.graphics.Bitmap;
+
 public class UserPreview
 {
     private int userId;
     private String username;
     private String firstName;
     private String lastName;
+    private Bitmap bitmap;
 
     public int getUserId() {
         return userId;
@@ -37,5 +40,13 @@ public class UserPreview
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }

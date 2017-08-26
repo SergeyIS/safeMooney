@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.safemooney.R;
-import com.safemooney.http.models.Transaction;
 import com.safemooney.http.models.TransactionPreview;
 
 import java.util.List;
@@ -33,17 +32,28 @@ public class TransactionAdapter extends ArrayAdapter<TransactionPreview>
 
         View view = inflater.inflate(this.layout, parent, false);
 
-        ImageView imageView = (ImageView) view.findViewById(R.id.background_img);
+        final ImageView imageView = (ImageView) view.findViewById(R.id.background_img);
         TextView usernameView = (TextView) view.findViewById(R.id.username_text);
         TextView largenameView = (TextView) view.findViewById(R.id.largename_text);
         TextView countView = (TextView) view.findViewById(R.id.count_text);
 
-        TransactionPreview trans = transactions.get(position);
+        final TransactionPreview trans = transactions.get(position);
 
         imageView.setImageResource(R.color.colorOrange);
+
+        if(trans.getUserData().getBitmap() != null)
+            imageView.setImageBitmap(trans.getUserData().getBitmap());
+
         largenameView.setText(trans.getUserData().getFirstName() + " " + trans.getUserData().getLastName());
         usernameView.setText("@" + trans.getUserData().getUsername());
         countView.setText(trans.getTransactionData().getCount());
+
+        countView.setBackgroundResource(R.color.colorOrangeBright);
+        
+        if(trans.getTransactionData().getId() == trans.getUserData().getUserId())
+        {
+            countView.setBackgroundResource(R.color.colorBrightgreen);
+        }
 
         return view;
     }

@@ -2,6 +2,7 @@ package com.safemooney.app.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.safemooney.http.models.User;
 import com.safemooney.http.models.Transaction;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -104,6 +106,7 @@ public class MainActivity extends AppCompatActivity
                 ArrayAdapter<TransactionPreview> adapter = (ArrayAdapter<TransactionPreview>) transactionsView.getAdapter();
                 adapter.clear();
                 adapter.addAll(transactionList);
+                updateImages();
             }
         };
 
@@ -145,13 +148,51 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void updateImages()
+    {
+        ListView listView = (ListView) findViewById(R.id.transactions_view);
+        int count = listView.getCount();
+        //final ArrayAdapter<TransactionPreview> adapter = (ArrayAdapter<TransactionPreview>) listView.getAdapter();
+        final int[] counter = new int[1];
+        while (counter[0] < count)
+        {
+            final Bitmap[] bitmaps = new Bitmap[1];
+            final int positionOfItem = counter[0];
+            AsyncTask<Void, Integer, Void> asyncTask = new AsyncTask<Void, Integer, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids)
+                {
+                    try
+                    {
+                        AccountClient accountClient = new AccountClient();
+                        Bitmap buf = accountClient.getImage(3, "0ee01fffc469ad5cc1ff2eb94970f8f7ebe6cef3adcab6ee2b4ece25ea43cb46f48d72f2ac5e0512c17de6259be9346edea95ae020cc92ec");
+                        bitmaps[0] = buf;
+                    }
+                    catch (Exception e)
+                    {
+                        Log.d("mytag", e.toString());
+                    }
 
+                    return null;
+                }
 
+                @Override
+                protected void onPostExecute(Void aVoid)
+                {
+                    ListView listView = (ListView) findViewById(R.id.transactions_view);
+                    ArrayAdapter<TransactionPreview> adapter = (ArrayAdapter<TransactionPreview>) listView.getAdapter();
 
+                    TransactionPreview preview = adapter.getItem(positionOfItem);
+                    preview.getUserData().setBitmap(bitmaps[0]);
+                    adapter.notifyDataSetChanged();
+                }
+            };
+            asyncTask.execute();
 
+            counter[0]++;
+        }
 
-
-
+    }
 
     private void logOut()
     {
@@ -186,13 +227,4 @@ public class MainActivity extends AppCompatActivity
         startActivity(loginIntent);
         finish();
     }
-    private void InitializeTransactionList()
-    {
-//        for(int i = 0; i < 10 ; i++)
-//            TRANSACTION_LIST.add(new Transaction("Sergey Ivanovich" + i, "123.45", new byte[1], true));
-
-    }
-
-
-
 }

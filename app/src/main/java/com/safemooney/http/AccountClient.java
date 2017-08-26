@@ -1,8 +1,14 @@
 package com.safemooney.http;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
@@ -213,6 +219,45 @@ public class AccountClient
         }
     }
 
+
+    public Bitmap getImage(int userId, String tokenkey)
+    {
+        if(userId < 0)
+            throw new IllegalArgumentException("userId can't be negative");
+
+        if(tokenkey == null)
+            throw new IllegalArgumentException("One of arguments has NULL value");
+
+        try
+        {
+            String getImgPath = host + "/api/3/getimg";
+            URL logInUrl = new URL(getImgPath);
+            final HttpURLConnection urlConnection = (HttpURLConnection) logInUrl.openConnection();
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.addRequestProperty("Accept-Charset", charsetName);
+            urlConnection.addRequestProperty("Authorization", "Basic " + tokenkey);
+            urlConnection.addRequestProperty("Content-Type", "image/jpg");
+            urlConnection.connect();
+
+            synchronized (urlConnection)
+            {
+                int code = urlConnection.getResponseCode();
+                if(urlConnection.getResponseCode() == 200)
+                {
+                    InputStream in = urlConnection.getInputStream();
+                    Bitmap bm = BitmapFactory.decodeStream(in);
+                    return bm;
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+
+        }
+        return null;
+    }
 
 
     private static class UserCredential implements Serializable
