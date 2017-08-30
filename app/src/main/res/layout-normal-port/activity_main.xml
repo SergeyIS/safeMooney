@@ -16,10 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_weight="1.18">
+        android:layout_weight="1.0">
     </ListView>
 
 
@@ -28,9 +28,9 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="bottom|center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:backgroundTint="@color/colorOrange"
-        app:elevation="8dp"
+        app:elevation="0dp"
         app:fabSize="normal"
         app:srcCompat="@drawable/add_plus_button" />
 

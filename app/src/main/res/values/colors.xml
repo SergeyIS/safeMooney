@@ -8,4 +8,5 @@
     <color name="colorBrightOrange">#febc66</color>
     <color name="colorBrightgreen">#db66fead</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="notAccepted">#e4e4e4</color>
 </resources>

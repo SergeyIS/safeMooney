@@ -1,15 +1,19 @@
 package com.safemooney.app.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.safemooney.R;
@@ -36,13 +40,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //InitializeTransactionList();
-
-        ListView transactionsView = (ListView) findViewById(R.id.transactions_view);
-        TransactionAdapter adapter = new TransactionAdapter(this, R.layout.transaction_item, TRANSACTION_LIST);
-        transactionsView.setAdapter(adapter);
-
-
         //getting currentUser
         SharedPreferences preferences = getSharedPreferences("userdata", MODE_PRIVATE);
         int userId = preferences.getInt("userId", -1);
@@ -67,6 +64,21 @@ public class MainActivity extends AppCompatActivity
             currentUser.setTokenkey(tokenkey);
         }
         //
+        final Context context = this;
+        FloatingActionButton addNewBtn = (FloatingActionButton) findViewById(R.id.add_transaction_btn);
+        addNewBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent findUserIntent = new Intent();
+                findUserIntent.setClass(context, FindUserActivity.class);
+                startActivity(findUserIntent);
+            }
+        });
+        ListView transactionsView = (ListView) findViewById(R.id.transactions_view);
+        TransactionAdapter adapter = new TransactionAdapter(this, R.layout.transaction_item, TRANSACTION_LIST, currentUser);
+        transactionsView.setAdapter(adapter);
 
     }
 

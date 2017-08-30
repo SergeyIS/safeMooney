@@ -51,7 +51,6 @@
 
     <Button
         android:id="@+id/signin_btn"
-        style="@android:style/Widget.Material.Light.Button.Small"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
@@ -61,6 +60,14 @@
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/signup_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Sign Up"
+        android:textAlignment="center" />
 
 
 </LinearLayout>

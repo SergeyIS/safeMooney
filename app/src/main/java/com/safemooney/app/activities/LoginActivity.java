@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.safemooney.app.services.NoticeService;
@@ -24,11 +25,30 @@ public class LoginActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
 
         Button signinBtn = (Button) findViewById(R.id.signin_btn);
+        TextView signUpText = (TextView) findViewById(R.id.signup_text);
         signinBtn.setOnClickListener(new ButtonClickListener(this));
+        final Context context = this;
+        signUpText.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try
+                {
+                    Intent supIntent = new Intent();
+                    supIntent.setClass(context, SignupActivity.class);
+                    context.startActivity(supIntent);
+                    finish();
+                }
+                catch(Exception e)
+                {
+                    e.getMessage();
+                }
+            }
+        });
 
     }
 

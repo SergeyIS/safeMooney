@@ -22,6 +22,7 @@
         <activity android:name=".app.activities.AddTransactionActivity" />
         <activity android:name=".app.activities.FindUserActivity" />
         <activity android:name=".app.activities.NoticeActivity"></activity>
+        <activity android:name=".app.activities.SignupActivity"></activity>
     </application>
 
 </manifest>

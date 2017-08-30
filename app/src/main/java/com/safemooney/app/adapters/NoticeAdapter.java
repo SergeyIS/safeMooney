@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.safemooney.R;
 import com.safemooney.http.TransactionClient;
@@ -33,16 +34,16 @@ public class NoticeAdapter extends ArrayAdapter<TransactionPreview>
         this.inflater = LayoutInflater.from(context);
         this.currentUser = currentUser;
     }
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
-
         View view = inflater.inflate(this.layout, parent, false);
 
         ImageView imageView = (ImageView) view.findViewById(R.id.background_img);
         TextView usernameView = (TextView) view.findViewById(R.id.username_text);
         TextView largenameView = (TextView) view.findViewById(R.id.largename_text);
         TextView countView = (TextView) view.findViewById(R.id.count_text);
-        //Button confirmBtn = (Button) view.findViewById(R.id.confirm_btn);
+        Button confirmBtn = (Button) view.findViewById(R.id.confirm_btn);
+        Button cancelBtn = (Button) view.findViewById(R.id.cancel_btn);
 
         final TransactionPreview trans = transactions.get(position);
 
@@ -58,18 +59,20 @@ public class NoticeAdapter extends ArrayAdapter<TransactionPreview>
         countView.setBackgroundResource(R.color.colorOrangeBright);
 
         if(trans.getTransactionData().getId() == trans.getUserData().getUserId())
-        {
             countView.setBackgroundResource(R.color.colorBrightgreen);
-        }
 
-        view.setOnClickListener(new View.OnClickListener()
+
+        confirmBtn.setOnClickListener(new View.OnClickListener()
         {
+            final int userId = currentUser.getId();
+            final String tokenKey = currentUser.getTokenkey();
+            final int tid = trans.getTransactionData().getId();
+
             @Override
             public void onClick(View view)
             {
-                final int userId = currentUser.getId();
-                final String tokenKey = currentUser.getTokenkey();
-                final int transId = trans.getTransactionData().getId();
+                transactions.remove(position);
+                notifyDataSetChanged();
 
                 Thread th = new Thread(new Runnable()
                 {
@@ -77,13 +80,33 @@ public class NoticeAdapter extends ArrayAdapter<TransactionPreview>
                     public void run()
                     {
                         TransactionClient transactionClient = new TransactionClient(userId, tokenKey);
-                        transactionClient.confirmTransaction(transId);
+                        transactionClient.confirmTransaction(tid);
                     }
                 });
+
                 th.start();
             }
         });
 
+        cancelBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                try
+                {
+//                    transactions.remove(position);
+//                    notifyDataSetChanged();
+
+                    Toast toast = Toast.makeText(getContext(), "it's not implemented yet", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                catch (Exception e)
+                {
+                    //// TODO: 8/30/17 write log
+                }
+            }
+        });
         return view;
     }
 }

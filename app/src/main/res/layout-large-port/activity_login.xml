@@ -31,43 +31,43 @@
         style="@android:style/Widget.Holo.AutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:ems="10"
         android:hint="login"
         android:inputType="textPersonName"
         android:singleLine="true"
         android:textColorLink="@color/colorOrange"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/password_edit"
         style="@android:style/Widget.Holo.AutoCompleteTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
         android:singleLine="true"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/signin_btn"
-        style="@android:style/Widget.Material.Light.Button.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:layout_marginTop="50dp"
         android:background="@color/colorOrange"
         android:text="@string/signin_btn"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/colorWhite"
-        android:textSize="24sp" />
+        android:textSize="18sp" />
 
+    <TextView
+        android:id="@+id/signup_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Sign Up"
+        android:textAlignment="center" />
 
 </LinearLayout>

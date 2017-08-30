@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/files/dev/safeMooney/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="f66ebe158cd925b6989499050d7353f6e3125456">
+        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_aac9a83475f49f355f7276d382a99302f3edb901/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/files/dev/safeMooney/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
@@ -11,13 +20,13 @@
         <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_4babfda0cb5581ee3a4d045e0fa20d4dd3f853f9/classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="/files/dev/safeMooney/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/files/dev/safeMooney/app/libs/gson-2.8.1.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.0"
-        sha1="2052e7ed571406ac031c6e8cdf8f57d130d5da06">
-        <dex dex="/files/dev/safeMooney/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_aac9a83475f49f355f7276d382a99302f3edb901/classes.dex" />
+        sha1="02a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0">
+        <dex dex="/files/dev/safeMooney/app/build/intermediates/pre-dexed/debug/gson-2.8.1_cc4653a51eae949bc965859b757c39a40a885322.jar" />
     </item>
     <item
         is-multidex="true"
