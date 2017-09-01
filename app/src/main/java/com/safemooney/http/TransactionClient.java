@@ -310,7 +310,58 @@ public class TransactionClient
         }
     }
 
+    public List<UserPreview> getUserList(String... search)
+    {
+        try
+        {
+            if(search.length == 0)
+                return  null;
 
+            String getUserListPath = host + "/api/" + userId + "/transactions/getuserlist?search=" + search[0];
+
+            for(int i = 1; i < search.length; i++)
+                getUserListPath+="%20"+search[i];
+
+            URL getUserListUrl = new URL(getUserListPath);
+            HttpURLConnection urlConnection = (HttpURLConnection)getUserListUrl.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.addRequestProperty("Accept-Charset", charsetName);
+            urlConnection.addRequestProperty("Content-Type", "application/json");
+            urlConnection.addRequestProperty("Authorization", "Basic " + tokenKey);
+            urlConnection.setDoInput(true);
+
+
+            urlConnection.connect();
+
+            if(urlConnection.getResponseCode() != urlConnection.HTTP_OK)
+                return null;
+
+
+            InputStream response = urlConnection.getInputStream();
+            Scanner s = new Scanner(response);
+            String json = s.hasNext() ? s.next() : "";
+
+            List<LinkedTreeMap> userList = serializer.fromJson(json, List.class);
+
+            List<UserPreview> userPreviews = new ArrayList<UserPreview>(userList.size());
+
+            for(LinkedTreeMap u : userList)
+            {
+                UserPreview up = new UserPreview();
+                up.setUserId((int)((double) u.get("UserId")));
+                up.setFirstName((String)u.get("FirstName"));
+                up.setLastName((String)u.get("LastName"));
+                up.setUsername((String)u.get("Username"));
+                userPreviews.add(up);
+            }
+
+            return userPreviews;
+        }
+        catch(IOException e)
+        {
+            return  null;
+        }
+    }
 
 
     private static class TransactionModel implements Serializable

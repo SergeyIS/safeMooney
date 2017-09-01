@@ -120,7 +120,42 @@ public class FindUserActivity extends AppCompatActivity
         @Override
         public void afterTextChanged(Editable editable)
         {
-            Log.d("mytag", editable.toString());
+            final String search = editable.toString();
+
+            AsyncTask<Void, Integer, Void> asyncTask = new AsyncTask<Void, Integer, Void>()
+            {
+
+                List<UserPreview> userList;
+                @Override
+                protected Void doInBackground(Void... unused)
+                {
+                    try
+                    {
+                        TransactionClient transactionClient = new TransactionClient(currentUser.getId(), currentUser.getTokenkey());
+                        userList = transactionClient.getUserList(search.split(" "));
+                    }
+                    catch(Exception e)
+                    {
+                        Log.d("mytag", e.toString());
+                    }
+
+                    return(null);
+                }
+
+                @Override
+                protected void onPostExecute(Void unused)
+                {
+                    if(userList == null)
+                        return;
+
+                    ListView usersView = (ListView) findViewById(R.id.userlist);
+                    ArrayAdapter<UserPreview> adapter = (ArrayAdapter<UserPreview>) usersView.getAdapter();
+                    adapter.clear();
+                    adapter.addAll(userList);
+                }
+            };
+
+            asyncTask.execute();
         }
     }
 
